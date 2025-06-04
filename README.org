@@ -2,6 +2,8 @@
 #+AUTHOR: Christian Cleberg
 #+OPTIONS: toc:nil
 
+[[https://deepwiki.com/ccleberg/crumb][https://deepwiki.com/badge.svg]]
+
 Crumb is a local-only browser history tracker. It consists of two parts: a
 WebExtension-based browser plugin and a local HTTP server. Crumb logs each
 visited web page to a plaintext file in Org-mode format.
