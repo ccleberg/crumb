@@ -3,6 +3,7 @@ import sys
 
 LOG_PATH = os.path.expanduser("~/.crumb/history.org")
 
+
 def search_log(query):
     """
     Search for a given query string within the crumb history log file and print matching entries.
@@ -28,6 +29,7 @@ def search_log(query):
 
     if found == 0:
         print("No matches found.")
+
 
 if __name__ == "__main__":
     """
