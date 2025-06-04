@@ -1,22 +1,44 @@
-from flask import Flask, request, jsonify, make_response
 import os
 from datetime import datetime
+from flask import Flask, request
 
 app = Flask(__name__)
 LOG_PATH = os.path.expanduser("~/.crumb/history.org")
 
 os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
 
+
 @app.after_request
 def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    """
+    Add CORS headers to the response to allow cross-origin requests.
+
+    Args:
+        response (flask.Response): The response object to modify.
+
+    Returns:
+        flask.Response: The modified response object with CORS headers.
+    """
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
     return response
 
-@app.route('/', methods=['POST', 'OPTIONS'])
+
+@app.route("/", methods=["POST", "OPTIONS"])
 def log_visit():
-    if request.method == 'OPTIONS':
-        return '', 204
+    """
+    Handle POST requests to log visit information and OPTIONS requests for CORS preflight.
+
+    For POST requests, parse JSON data from the request, extract visit details,
+    and append them to the log file in org-mode format.
+
+    For OPTIONS requests, return a 204 No Content response.
+
+    Returns:
+        tuple: An empty string and the HTTP status code 204.
+    """
+    if request.method == "OPTIONS":
+        return "", 204
 
     data = request.json
     title = data.get("title", "No Title")
@@ -44,7 +66,11 @@ def log_visit():
             f.write(f":FAVICON:   {favicon}\n")
         f.write(":END:\n\n")
 
-    return '', 204
+    return "", 204
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    """
+    Run the Flask application on port 3555 when executed as the main program.
+    """
     app.run(port=3555)
