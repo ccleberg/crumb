@@ -34,9 +34,9 @@ def search_log(query):
 if __name__ == "__main__":
     """
     Entry point for the script. Parses command line arguments and calls the search function.
-    Usage: search_crumb.py <search term>
+    Usage: search.py <search term>
     """
     if len(sys.argv) < 2:
-        print("Usage: search_crumb.py <search term>")
+        print("Usage: search.py <search term>")
     else:
         search_log(sys.argv[1])
