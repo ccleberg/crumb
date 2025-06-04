@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Crumb",
+  "version": "0.1",
+  "description": "Local history tracker that sends visit logs to a local server.",
+  "permissions": ["tabs", "history"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
